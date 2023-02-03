@@ -10,7 +10,12 @@ public class FizzBuzzRunner {
     public static void main(String[] args) {
         var fizzBuzzExecutor = new FizzBuzzExecutor();
         IntStream.range(RANGE_START_INCLUSIVE, RANGE_END_EXCLUSIVE).forEach(number -> {
-            var result = fizzBuzzExecutor.execute(number);
+            String result = null;
+            try {
+                result = fizzBuzzExecutor.execute(number);
+            } catch (NegativeInputException e) {
+                throw new RuntimeException(e);
+            }
             System.out.println(result);
         });
     }
